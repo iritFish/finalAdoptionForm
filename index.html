@@ -10,84 +10,109 @@
     <!-- CSS -->
     <!--<link href="styles/reset.css" rel="stylesheet" />-->
     <link href="styles/myStyle.css" rel="stylesheet" />
+    
+    
+    <!-- יבוא הגופן Rubik מגוגל פונטס -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300..900&display=swap" rel="stylesheet">
+
 
     <!-- Scripts -->
     <script src="jScripts/JavaScript.js" type="text/javascript">  </script>
 </head>
 <body>
-<!-- הטופס מתחיל כאן ללא קונטיינר נוסף -->
+<!-- המעטפת הראשית של שני הטורים -->
 <div class="form-container">
-    <h2>טופס אימוץ כלבים</h2>
 
-    <!-- תיבת טקסט לשם -->
-    <div class="input-group">
-        <label for="adopterName">שם המאמץ:</label>
-        <input type="text" id="adopterName" oninput="checkFormValidity()" placeholder="הכנס שם מלא..." />
+    <!-- צד ימין: אזור מילוי הטופס -->
+    <div class="form-inputs">
+        <h2>טופס אימוץ כלבים</h2>
+
+        <div class="input-group">
+            <label for="adopterName">שם המאמץ:</label>
+            <input type="text" id="adopterName" oninput="checkFormValidity()" placeholder="הכנס שם מלא..." />
+        </div>
+
+        <hr>
+
+        <!-- כפתורי רדיו מסודרים בטור -->
+        <h3>בחר כלב לאימוץ (ניתן לבחור רק אחד):</h3>
+        <div class="dogs-list">
+            <div class="input-item">
+                <input type="radio" id="dog1" name="dog" value="רקס" onchange="showDogImage('imgDog1')" />
+                <label for="dog1">רקס, בן 2</label>
+            </div>
+            <div class="input-item">
+                <input type="radio" id="dog2" name="dog" value="לאסי" onchange="showDogImage('imgDog2')" />
+                <label for="dog2">סאני, בת 4</label>
+            </div>
+            <div class="input-item">
+                <input type="radio" id="dog3" name="dog" value="שוקו" onchange="showDogImage('imgDog3')" />
+                <label for="dog3">שוקו, בן חצי שנה</label>
+            </div>
+            <div class="input-item">
+                <input type="radio" id="dog4" name="dog" value="בל" onchange="showDogImage('imgDog4')" />
+                <label for="dog4">בל, בת 3</label>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- צ'ק בוקסים מסודרים בטור -->
+        <h3>בחר אקססוריז (ניתן לבחור כמה):</h3>
+        <div class="acc-list">
+            <div class="input-item">
+                <input type="checkbox" id="acc1" value="אוכל לכלבים" onchange="toggleAccImage('acc1', 'imgAcc1')" />
+                <label for="acc1">אוכל יבש</label>
+            </div>
+            <div class="input-item">
+                <input type="checkbox" id="acc2" value="מיטה רכה" onchange="toggleAccImage('acc2', 'imgAcc2')" />
+                <label for="acc2">מיטה רכה</label>
+            </div>
+            <div class="input-item">
+                <input type="checkbox" id="acc3" value="צעצוע לעיסה" onchange="toggleAccImage('acc3', 'imgAcc3')" />
+                <label for="acc3">צעצוע לעיסה</label>
+            </div>
+            <div class="input-item">
+                <input type="checkbox" id="acc4" value="קערת אוכל" onchange="toggleAccImage('acc4', 'imgAcc4')" />
+                <label for="acc4">קערת אוכל</label>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- כפתור אישור -->
+        <button id="submitBtn" class="disabled-btn" onclick="submitForm()" disabled>אשר אימוץ!</button>
     </div>
 
-    <hr>
+    <!-- צד שמאל: אזור תצוגת התמונות והסיכום -->
+    <div class="display-area">
+        <h3>הבחירות שלך:</h3>
 
-    <!-- כפתורי רדיו: בחירת כלב -->
-    <h3>בחר כלב לאימוץ (ניתן לבחור רק אחד):</h3>
-    <div class="dogs-grid">
-        <div class="dog-card">
-            <input type="radio" id="dog1" name="dog" value="רקס" onchange="showDogImage('imgDog1')" />
-            <label for="dog1">רקס, בן 2</label>
-            <img id="imgDog1" src="" alt="כלב 1" class="hidden-img" />
+        <!-- אזור לתמונת הכלב -->
+        <div class="dog-image-container">
+            <img id="imgDog1" src="images/dog1.png" alt="כלב בולדוג זכר" class="hidden-img" />
+            <img id="imgDog2" src="images/dog2.png" alt="כלב מסוג ביגל נקבה" class="hidden-img" />
+            <img id="imgDog3" src="images/dog3.png" alt="כלב מסוג לברדור זכר" class="hidden-img" />
+            <img id="imgDog4" src="images/dog4.png" alt="כלב מסוג לברדור מעורב נקבה" class="hidden-img" />
         </div>
-        <div class="dog-card">
-            <input type="radio" id="dog2" name="dog" value="לאסי" onchange="showDogImage('imgDog2')" />
-            <label for="dog2">לאסי, בת 4</label>
-            <img id="imgDog2" src="" alt="כלב 2" class="hidden-img" />
+
+        <!-- אזור לתמונות האקססוריז -->
+        <div class="acc-images-container">
+            <img id="imgAcc1" src="images/food.png" alt="אוכל לכלבים" class="faded-img" />
+            <img id="imgAcc2" src="images/bed.png" alt="מיטה רכה" class="faded-img" />
+            <img id="imgAcc3" src="images/toy.png" alt="צעצוע לעיסה" class="faded-img" />
+            <img id="imgAcc4" src="images/emptyball.png" alt="קערת אוכל" class="faded-img" />
         </div>
-        <div class="dog-card">
-            <input type="radio" id="dog3" name="dog" value="שוקו" onchange="showDogImage('imgDog3')" />
-            <label for="dog3">שוקו, בן חצי שנה</label>
-            <img id="imgDog3" src="" alt="כלב 3" class="hidden-img" />
-        </div>
-        <div class="dog-card">
-            <input type="radio" id="dog4" name="dog" value="בל" onchange="showDogImage('imgDog4')" />
-            <label for="dog4">בל, בת 3</label>
-            <img id="imgDog4" src="" alt="כלב 4" class="hidden-img" />
-        </div>
+
+        <!-- הודעת הסיכום עברה גם היא הנה -->
+        <div id="resultMessage" class="result-message"></div>
     </div>
 
-    <hr>
-
-    <!-- צ'ק בוקס: בחירת אקססוריז -->
-    <h3>בחר אקססוריז (ניתן לבחור כמה):</h3>
-    <div class="acc-grid">
-        <div class="acc-card">
-            <input type="checkbox" id="acc1" value="קולר מואר" onchange="toggleAccImage('acc1', 'imgAcc1')" />
-            <label for="acc1">קולר מואר</label>
-            <img id="imgAcc1" src="" alt="קולר מואר" class="faded-img" />
-        </div>
-        <div class="acc-card">
-            <input type="checkbox" id="acc2" value="מיטה רכה" onchange="toggleAccImage('acc2', 'imgAcc2')" />
-            <label for="acc2">מיטה רכה</label>
-            <img id="imgAcc2" src="" alt="מיטה רכה" class="faded-img" />
-        </div>
-        <div class="acc-card">
-            <input type="checkbox" id="acc3" value="צעצוע לעיסה" onchange="toggleAccImage('acc3', 'imgAcc3')" />
-            <label for="acc3">צעצוע לעיסה</label>
-            <img id="imgAcc3" src="" alt="צעצוע לעיסה" class="faded-img" />
-        </div>
-        <div class="acc-card">
-            <input type="checkbox" id="acc4" value="קערת אוכל" onchange="toggleAccImage('acc4', 'imgAcc4')" />
-            <label for="acc4">קערת אוכל</label>
-            <img id="imgAcc4" src="" alt="קערת אוכל" class="faded-img" />
-        </div>
-    </div>
-
-    <hr>
-
-    <!-- כפתור אישור -->
-    <button id="submitBtn" class="disabled-btn" onclick="submitForm()" disabled>אשר אימוץ!</button>
-
-    <!-- אזור להצגת הודעת הסיכום -->
-    <div id="resultMessage" class="result-message"></div>
 </div>
-
+</body>
+</html>
 
 
 
