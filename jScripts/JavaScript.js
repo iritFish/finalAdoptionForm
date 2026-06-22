@@ -1,4 +1,5 @@
-﻿// הצגת תמונת הכלב שנבחר והסתרת השאר
+﻿
+// פונקציה להצגת הכלב הנבחר תוך הסתרת השאר בעזרת שינוי מחלקות
 function showDogImage(selectedImgId) {
     document.getElementById("imgDog1").classList.replace("visible-img", "hidden-img");
     document.getElementById("imgDog2").classList.replace("visible-img", "hidden-img");
@@ -7,14 +8,16 @@ function showDogImage(selectedImgId) {
 
     document.getElementById(selectedImgId).classList.replace("hidden-img", "visible-img");
 
+    // קריאה לפונקציה שבודקת האם להדליק את כפתור האישור
     checkFormValidity();
 }
 
-// שינוי שקיפות האקססוריז
+// פונקציה המראה/מסתירה את תמונת האביזר לפי סימון
 function toggleAccImage(checkboxId, imageId) {
     const isChecked = document.getElementById(checkboxId).checked;
     const imgElement = document.getElementById(imageId);
 
+    // תנאי  הקובע את מחלקת הCSS 
     if (isChecked) {
         imgElement.classList.replace("faded-img", "highlighted-img");
     } else {
@@ -22,10 +25,11 @@ function toggleAccImage(checkboxId, imageId) {
     }
 }
 
-// בדיקה האם הטופס מלא כדי להפעיל את כפתור האישור
+// פונקציה המאמתת את הטופס
 function checkFormValidity() {
-    const nameValue = document.getElementById("adopterName").value;
+    const nameValue = document.getElementById("adopterName").value; // קליטת משתנה מתיבת הטקסט 
 
+    // בדיקה האם לפחות רדיו  אחד נבחר
     const isDogSelected = document.getElementById("dog1").checked ||
         document.getElementById("dog2").checked ||
         document.getElementById("dog3").checked ||
@@ -33,6 +37,7 @@ function checkFormValidity() {
 
     const submitBtn = document.getElementById("submitBtn");
 
+    // שימוש באופרטור &&  להדלקת הכפתור
     if (nameValue.length > 0 && isDogSelected) {
         submitBtn.disabled = false;
         submitBtn.classList.replace("disabled-btn", "enabled-btn");
@@ -42,29 +47,38 @@ function checkFormValidity() {
     }
 }
 
-// פעולת הסיכום בעת לחיצה על אישור
+// פונקציה מסכמת הכוללת שימוש במערכים ולולאות 
 function submitForm() {
     const nameValue = document.getElementById("adopterName").value;
     let selectedDogName = "";
 
-    if (document.getElementById("dog1").checked) { selectedDogName = document.getElementById("dog1").value; }
-    if (document.getElementById("dog2").checked) { selectedDogName = document.getElementById("dog2").value; }
-    if (document.getElementById("dog3").checked) { selectedDogName = document.getElementById("dog3").value; }
-    if (document.getElementById("dog4").checked) { selectedDogName = document.getElementById("dog4").value; }
+    // שימוש בלולאה למעבר על כל כפתורי הרדיו של הכלבים
+    const dogs = document.getElementsByName("dog");
+    for (let i = 0; i < dogs.length; i++) {
+        if (dogs[i].checked) {
+            selectedDogName = dogs[i].value;
+        }
+    }
 
+    // הגדרת מערך לאיסוף האקססוריז
     let chosenAcc = [];
-    if (document.getElementById("acc1").checked) { chosenAcc.push(document.getElementById("acc1").value); }
-    if (document.getElementById("acc2").checked) { chosenAcc.push(document.getElementById("acc2").value); }
-    if (document.getElementById("acc3").checked) { chosenAcc.push(document.getElementById("acc3").value); }
-    if (document.getElementById("acc4").checked) { chosenAcc.push(document.getElementById("acc4").value); }
+
+    // לולאה העוברת על 4 הצק בוקסים ובודקת מי מהם מסומן
+    for (let i = 1; i <= 4; i++) {
+        let currentAcc = document.getElementById("acc" + i);
+        if (currentAcc.checked) {
+            chosenAcc.push(currentAcc.value); // הוספה למערך
+        }
+    }
 
     let accText = "";
     if (chosenAcc.length > 0) {
-        accText = chosenAcc.join(", ");
+        accText = chosenAcc.join(", "); // המרת המערך למחרוזת טקסט רציפה
     } else {
         accText = "לא נבחרו אקססוריז";
     }
 
+    // שרשור מחרוזות להדפסת התוצאה
     const summaryText = "תודה רבה " + nameValue + "!<br>" +
         "בחרת לאמץ את הכלב: " + selectedDogName + "<br>" +
         "האקססוריז שבחרת: " + accText;
