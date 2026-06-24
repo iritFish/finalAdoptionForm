@@ -70,7 +70,7 @@
 
 /* מחלקות לאקססוריז */
 .faded-img {
-    opacity: 0.2; /* הפכתי לשקוף יותר (20%) כדי שההבלטה תהיה חזקה יותר */
+    opacity: 0.5; 
     width: 100px;
     height: 100px;
     object-fit: cover;
