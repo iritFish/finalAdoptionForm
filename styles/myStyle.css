@@ -86,19 +86,20 @@
     box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 
-/* עיצוב כפתור האישור */
+/* עיצוב כפתור האישור כשהנתונים לא מלאים */
 .disabled-btn {
     opacity: 0.5;
     background-color: gray;
     color: white;
     padding: 12px 25px;
     font-size: 18px;
-    cursor: not-allowed;
+    cursor: not-allowed; /* משנה את הצורה של העכבר במעבר על הכפתור */
     border: none;
-    border-radius: 5px;
+    border-radius: 5px; /* גבולות הכפתור */
     width: 100%; /* כפתור ברוחב מלא */
     margin-top: 20px;
 }
+/* עיצוב כפתור האישור כשהנתונים מלאים */
 .enabled-btn {
     opacity: 1;
     background-color: #a55e41;
