@@ -29,7 +29,7 @@ function toggleAccImage(checkboxId, imageId) {
 function checkFormValidity() {
     const nameValue = document.getElementById("adopterName").value; // קליטת משתנה מתיבת הטקסט 
 
-    // בדיקה האם לפחות רדיו  אחד נבחר
+    // בדיקה האם לפחות בחירה  אחת נבחרה
     const isDogSelected = document.getElementById("dog1").checked ||
         document.getElementById("dog2").checked ||
         document.getElementById("dog3").checked ||
@@ -47,12 +47,12 @@ function checkFormValidity() {
     }
 }
 
-// פונקציה מסכמת הכוללת שימוש במערכים ולולאות 
+// פונקציה מסכמת  
 function submitForm() {
     const nameValue = document.getElementById("adopterName").value;
     let selectedDogName = "";
 
-    // שימוש בלולאה למעבר על כל כפתורי הרדיו של הכלבים
+    // מעבר על כל כפתורי הרדיו של הכלבים
     const dogs = document.getElementsByName("dog");
     for (let i = 0; i < dogs.length; i++) {
         if (dogs[i].checked) {
