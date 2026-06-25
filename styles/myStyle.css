@@ -1,84 +1,107 @@
 ﻿body {
-    direction: rtl;
-    background-image: url('../images/background.png');
-    background-color: #f4dbbc; /* צבע רקע טיפה כהה יותר כדי שהטופס הלבן יבלוט */
+    direction: rtl; /* כיוון הטקסט מימין לשמאל */
+    background-image: url('../images/background.png'); /* הגדרת תמונת רקע */
+    background-color: #f4dbbc; /* צבע רקע גיבוי למקרה שהתמונה לא תיטען */
 }
 
-/* המעטפת הראשית - שימוש ב-Flexbox לשני טורים */
+
+
+
+/*  המסגרת הראשית - שימוש ב-Flexbox ליצירת שני טורים נפרדים */
 .form-container {
-    max-width: 1000px;
-    margin: 40px auto;
-    display: flex; /* יוצר פריסה של צד לצד */
-    gap: 30px; /* מרווח בין הטור הימני לשמאלי */
-    font-family: 'Rubik', sans-serif; /* הגדרת הגופן החדש שיחול על כל האתר */
+    max-width: 1000px; /* רוחב של כל האזור */
+    margin: 40px auto; /* מרכז את כל המעטפת בדף */
+    display: flex; /* מפעיל את פריסת הטורים */
+    gap: 30px; /*  יוצר מרווח פנימי בין הטור הימני לשמאלי כדי שיהיה יותר נעים בעין ולא צפוף */
+    font-family: 'Rubik', sans-serif; /* קביעת סוג הגופן לכל האתר */
 }
 
-/* צד ימין (הטופס) */
+
+
+
+/* עיצוב צד ימין - אזור הטופס עצמו */
 .form-inputs {
-    flex: 1; /* תופס חצי מהמקום */
-    background-color: #f9f9f9;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    flex: 1; /* לוקח חלק שווה ברוחב המעטפת */
+    background-color: #f9f9f9; /* צבע רקע בהיר לטופס */
+    padding: 30px; /* מרווח פנימי כדי שהתוכן לא ייצמד לקצוות */
+    border-radius: 10px; /* עיגול פינות המלבן */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* הוספת צל עדין בשביל מראה תלת ממדי */
 }
 
-/* צד שמאל (התצוגה) */
+
+
+
+/* עיצוב צד שמאל - אזור התצוגה */
 .display-area {
-    flex: 1; /* תופס את החצי השני */
-    background-color: #ffffff;
+    flex: 1; /* לוקח את החצי השני של הרוחב */
+    background-color: #ffffff; /* רקע לבן בולט */
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* ממרכז את התמונות */
+    display: flex; /* הפעלת Flex פנימי לסידור אלמנטים */
+    flex-direction: column; /* סידור התוכן בטור (אחד מתחת לשני) */
+    align-items: center; /* מיקום התמונות במרכז הטור */
 }
 
-/* סידור פקדי הבחירה בטור אחד מתחת לשני */
+
+/* סידור תיבות הבחירה (רדיו וצ'קבוקסים) בטור אחד */
 .dogs-list, .acc-list {
     display: flex;
-    flex-direction: column; /* מסדר את הפריטים בטור (מלמעלה למטה) */
+    flex-direction: column; /* סידור הפריטים מלמעלה למטה */
     gap: 15px; /* מרווח אנכי בין שורה לשורה */
 }
 
+
+
+
+/* עיצוב טקסט של פריטי הקלט */
 .input-item {
     font-size: 18px;
 }
 
-/* סידור אזור האקססוריז לתצוגה יפה (ריבועית) בצד שמאל */
+
+
+
+/* עיצוב המכולה של תמונות האקססוריז בתצוגה */
 .acc-images-container {
     display: flex;
-    flex-wrap: wrap; /* מאפשר שבירת שורה אם אין מקום */
-    justify-content: center;
+    flex-wrap: wrap; /* מאפשר לתמונות לעבור שורה אם אין מקום ברוחב */
+    justify-content: center; /* מיקום התמונות במרכז */
     gap: 15px;
     margin-top: 20px;
 }
 
-/* מחלקות לתמונות הכלבים */
+
+
+
+/* מחלקות עבור מצב הכלב (נראה או לא נראה) */
 .hidden-img {
-    display: none;
+    display: none; /* מסתיר את התמונה מהדף לגמרי */
 }
 .visible-img {
-    display: block;
-    width: 200px; /* הגדלתי קצת את כלב כדי שייראה טוב בתצוגה */
+    display: block; /* מציג את התמונה */
+    width: 200px; /* קביעת גודל קבוע לתמונה */
     height: 200px;
-    object-fit: cover;
+    object-fit: cover; /* חיתוך התמונה שתתאים לגודל התיבה בלי להימתח */
     margin-top: 10px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-/* מחלקות לאקססוריז */
+
+
+
+/* מחלקות עבור מראה האביזרים */
 .faded-img {
-    opacity: 0.5; 
+    opacity: 0.5; /* שקיפות של 50% */
     width: 100px;
     height: 100px;
     object-fit: cover;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease; /* יצירת אנימציה חלקה לשינוי השקיפות */
     border-radius: 5px;
 }
 .highlighted-img {
-    opacity: 1;
+    opacity: 1; /* שקיפות מלאה - נראה מודגש */
     width: 100px;
     height: 100px;
     object-fit: cover;
@@ -86,41 +109,48 @@
     box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 
-/* עיצוב כפתור האישור כשהנתונים לא מלאים */
+
+
+
+/* עיצוב כפתור האישור - מצב חסום */
 .disabled-btn {
     opacity: 0.5;
     background-color: gray;
     color: white;
     padding: 12px 25px;
     font-size: 18px;
-    cursor: not-allowed; /* משנה את הצורה של העכבר במעבר על הכפתור */
-    border: none;
-    border-radius: 5px; /* גבולות הכפתור */
-    width: 100%; /* כפתור ברוחב מלא */
-    margin-top: 20px;
-}
-/* עיצוב כפתור האישור כשהנתונים מלאים */
-.enabled-btn {
-    opacity: 1;
-    background-color: #a55e41;
-    color: white;
-    padding: 12px 25px;
-    font-size: 18px;
-    cursor: pointer;
+    cursor: not-allowed; /* סימן של "אסור ללחוץ" כשהעכבר מעל */
     border: none;
     border-radius: 5px;
     width: 100%;
     margin-top: 20px;
-    transition: background-color 0.3s;
 }
+/* עיצוב כפתור האישור - מצב פעיל */
+.enabled-btn {
+    opacity: 1;
+    background-color: #a55e41; /* צבע רקע חום */
+    color: white;
+    padding: 12px 25px;
+    font-size: 18px;
+    cursor: pointer; /* שינוי העכבר ליד לחיצה */
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 20px;
+    transition: background-color 0.3s; /* אנימציה הדרגתית לשינוי צבע */
+}
+/* אפקט בעת מעבר עכבר על כפתור פעיל */
 .enabled-btn:hover {
-    background-color: #219150;
+    background-color: #219150; /* שינוי צבע לירוק במעבר עכבר */
 }
 
+
+/* עיצוב הודעת הסיכום הסופית */
 .result-message {
     margin-top: 30px;
     font-size: 20px;
-    font-weight: bold;
+    font-weight: bold; /* הדגשת הטקסט */
     color: #2c3e50;
     text-align: center;
 }
+
